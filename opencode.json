@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {      
+    "code-reviewer": {
+      "description": "Reviews code for best practices and potential issues",
+      "mode": "primary",
+      "model": "github-copilot/claude-sonnet-4.5",
+      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
+      "skills": ["code-review-excellence"],
+      "tools": {
+        "write": false,
+        "edit": false
+      }
+    },
+    "designer": {
+      "description": "UI/UX design specialist focusing on web interface best practices",
+      "mode": "primary",
+      "model": "github-copilot/claude-sonnet-4.5",
+      "prompt": "You are a UI/UX design expert. Focus on accessibility, user experience, visual design, and web best practices. Use the web-design-guidelines skill to audit and improve interfaces. Provide specific, actionable feedback on design patterns, component structure, and user interactions.",
+      "skills": ["web-design-guidelines", "tailwind-design-system"],
+      "tools": {
+        "write": true,
+        "edit": true
+      }
+    }
+  }
+}

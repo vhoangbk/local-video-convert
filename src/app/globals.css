@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+:root {
+  /* ============================================ */
+  /* PRIMARY GREEN SCALE (Main Brand Color)      */
+  /* ============================================ */
+  --primary-50: #f4fce8;
+  --primary-100: #e6f9c5;
+  --primary-200: #cff390;
+  --primary-300: #b0e951;
+  --primary-400: #94d92d;
+  --primary-500: #7bc043;  /* Main primary - #7bc043 */
+  --primary-600: #5f9a2e;
+  --primary-700: #497427;
+  --primary-800: #3c5c24;
+  --primary-900: #344e22;
+  --primary-950: #1a2b0e;
+  
+  /* ============================================ */
+  /* SKY/CYAN SCALE (Supporting Colors)          */
+  /* ============================================ */
+  --sky-50: #f0f9ff;
+  --sky-100: #e0f2fe;
+  --sky-200: #bae6fd;
+  --sky-300: #7dd3fc;
+  --sky-400: #38bdf8;
+  --sky-500: #0ea5e9;
+  --sky-600: #0284c7;
+  --sky-700: #0369a1;
+  --sky-800: #075985;
+  --sky-900: #0c4a6e;
+  --sky-950: #082f49;
+  
+  /* ============================================ */
+  /* NEUTRAL GRAYS (Text & Backgrounds)          */
+  /* ============================================ */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+  
+  /* ============================================ */
+  /* SEMANTIC COLORS - SUCCESS (Green)           */
+  /* ============================================ */
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  --success-800: #166534;
+  --success-900: #14532d;
+  
+  /* ============================================ */
+  /* SEMANTIC COLORS - WARNING (Amber)           */
+  /* ============================================ */
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+  
+  /* ============================================ */
+  /* SEMANTIC COLORS - ERROR/DESTRUCTIVE (Red)   */
+  /* ============================================ */
+  --error-50: #fef2f2;
+  --error-100: #fee2e2;
+  --error-200: #fecaca;
+  --error-300: #fca5a5;
+  --error-400: #f87171;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+  --error-700: #b91c1c;
+  --error-800: #991b1b;
+  --error-900: #7f1d1d;
+  
+  /* ============================================ */
+  /* SEMANTIC COLORS - INFO (Cyan)               */
+  /* ============================================ */
+  --info-50: #ecfeff;
+  --info-100: #cffafe;
+  --info-200: #a5f3fc;
+  --info-300: #67e8f9;
+  --info-400: #22d3ee;
+  --info-500: #06b6d4;
+  --info-600: #0891b2;
+  --info-700: #0e7490;
+  --info-800: #155e75;
+  --info-900: #164e63;
+  
+  /* ============================================ */
+  /* SHADCN UI COMPATIBILITY LAYER               */
+  /* ============================================ */
+  --background: var(--sky-50);
+  --foreground: var(--sky-900);
+  --card: #ffffff;
+  --card-foreground: var(--slate-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--slate-900);
+  --primary: var(--primary-500);
+  --primary-foreground: #ffffff;
+  --secondary: var(--sky-100);
+  --secondary-foreground: var(--sky-800);
+  --muted: var(--sky-200);
+  --muted-foreground: var(--sky-700);
+  --accent: var(--sky-500);
+  --accent-foreground: #ffffff;
+  --destructive: var(--error-500);
+  --destructive-foreground: #ffffff;
+  --border: var(--sky-300);
+  --input: var(--sky-200);
+  --ring: var(--primary-500);
+  --radius: 0.5rem;
+  
+  /* ============================================ */
+  /* QUICK ACCESS (Backwards Compatibility)      */
+  /* ============================================ */
+  --success: var(--success-600);
+  --warning: var(--warning-500);
+  --info: var(--info-500);
+  --error: var(--error-500);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Smooth transitions for interactive elements */
+*,
+*::before,
+*::after {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Prevent transitions on elements that animate independently */
+.animate-spin,
+[data-no-transition],
+button:active,
+input,
+textarea,
+select {
+  transition: none !important;
+}
+
+/* Re-enable specific transitions for inputs */
+input:not(:focus),
+textarea:not(:focus),
+select:not(:focus) {
+  transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Custom animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-2000 {
+  animation-delay: 2s;
+}
