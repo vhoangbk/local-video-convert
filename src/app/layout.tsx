@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Local Video Converter",
   description: "Convert video with local WebAssembly",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
