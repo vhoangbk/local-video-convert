@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from "@/components/ui/button"
-import { CheckCircle } from 'lucide-react'
-import { getStripeSession, type StripeSessionResponse } from '@/lib/api'
+import { CheckCircle, Loader2 } from 'lucide-react'
+import { getStripeSession } from '@/lib/api'
+import { StripeSessionResponse } from '@/types'
 
-export default function SuccessPage() {
+function SuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
@@ -20,7 +21,6 @@ export default function SuccessPage() {
       return
     }
 
-    // Fetch session details from Stripe via internal API route
     getStripeSession(sessionId).then((result) => {
       if (result.success && result.data) {
         setSessionData(result.data)
@@ -39,8 +39,8 @@ export default function SuccessPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-solid border-primary border-t-transparent"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">Loading...</p>
+          <Loader2 className="h-12 w-12 animate-spin text-slate-600 mx-auto" />
+          <p className="mt-4 text-slate-600 dark:text-slate-300">Loading...</p>
         </div>
       </div>
     )
@@ -102,5 +102,24 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="text-center">
+        <Loader2 className="h-12 w-12 animate-spin text-slate-600 mx-auto" />
+        <p className="mt-4 text-slate-600 dark:text-slate-300">Loading...</p>
+      </div>
+    </div>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <SuccessContent />
+    </Suspense>
   )
 }
