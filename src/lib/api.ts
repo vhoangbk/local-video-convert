@@ -121,6 +121,79 @@ export async function registerUser(
   }
 }
 
+export async function resetPassword(
+  email: string
+): Promise<ApiResponse<{ success: boolean; message: string }>> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: responseData.message || 'Failed to send reset password email',
+      };
+    }
+
+    return {
+      success: true,
+      data: responseData,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : 'Network error. Please try again.',
+    };
+  }
+}
+
+export async function setNewPassword(
+  token: string,
+  newPassword: string
+): Promise<ApiResponse<{ success: boolean; message: string }>> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token, newPassword }),
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        error: responseData.message || 'Failed to reset password',
+      };
+    }
+
+    return {
+      success: true,
+      data: responseData,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : 'Network error. Please try again.',
+    };
+  }
+}
+
 export async function verifyEmail(
   token: string
 ): Promise<ApiResponse<{ success: boolean; message: string }>> {

@@ -152,131 +152,102 @@ export default function Home() {
                 Fast, secure video conversion powered by WebAssembly. 
                 Your files never leave your device.
               </p>
-              {!user && (
-                <div className="flex gap-4 justify-center">
-                  <Button asChild size="lg" className="rounded-full px-8">
-                    <a href="/login">Get Started</a>
-                  </Button>
-                </div>
+              {user && (
+                <Button asChild size="lg" className="rounded-full px-8">
+                  <a href="/tool">Go to Tool</a>
+                </Button>
               )}
             </div>
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                Choose Your Plan
+                Powerful Video Tools
               </h2>
-              <p className="text-slate-500 max-w-md mx-auto">
-                Unlock unlimited conversions with a subscription that fits your needs
+              <p className="text-slate-600 max-w-xl mx-auto">
+                All the tools you need to edit your videos, right in your browser
               </p>
             </div>
-            
-            {pricesLoading ? (
-              <div className="text-center py-12" aria-live="polite">
-                <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
-                <p className="mt-4 text-slate-500 text-sm">Loading plans...</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {prices.map((price) => {
-                  const isCurrentPlan = currentPriceId === price.id
 
-                  return (
-                    <div
-                      key={price.id}
-                      className={`relative rounded-2xl p-6 transition-all duration-300 ${
-                        isCurrentPlan
-                          ? 'bg-white border-2 border-primary shadow-lg shadow-primary/10 scale-[1.02]'
-                          : 'bg-white border border-slate-200 hover:border-slate-300 hover:shadow-xl'
-                      }`}
-                    >
-                      {isCurrentPlan && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                          <span className="bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full shadow-md">
-                            Current Plan
-                          </span>
-                        </div>
-                      )}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              <a href="/tool?action=trim" className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                  <svg className="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-800">Trim</h3>
+                <p className="text-sm text-slate-500 mt-1">Cut video</p>
+              </a>
 
-                      <div className="mb-6">
-                        <h3 className="text-xl font-bold text-slate-800 mb-2">
-                          {price.nickname || 'Standard Plan'}
-                        </h3>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-4xl font-bold text-slate-800">
-                            {formatPrice(price)}
-                          </span>
-                          {price.recurring && (
-                            <span className="text-slate-500">
-                              /{price.recurring.interval}
-                            </span>
-                          )}
-                        </div>
-                      </div>
+              <a href="/tool?action=crop" className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                  <svg className="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h2m10-4v2a2 2 0 01-2 2h-2m4-16h-2a2 2 0 00-2 2v2M8 4H6a2 2 0 00-2 2v2" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-800">Crop</h3>
+                <p className="text-sm text-slate-500 mt-1">Resize video</p>
+              </a>
 
-                      <div className="space-y-3 mb-6">
-                        <div className="flex items-center gap-3 text-sm">
-                          <div className="w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
-                            <svg className="w-3 h-3 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-slate-600">Unlimited conversions</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-sm">
-                          <div className="w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
-                            <svg className="w-3 h-3 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-slate-600">Local processing</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-sm">
-                          <div className="w-5 h-5 rounded-full bg-primary-100 flex items-center justify-center">
-                            <svg className="w-3 h-3 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span className="text-slate-600">Priority support</span>
-                        </div>
-                      </div>
+              <a href="/tool?action=merge" className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                  <svg className="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-800">Merge</h3>
+                <p className="text-sm text-slate-500 mt-1">Combine videos</p>
+              </a>
 
-                      {isCurrentPlan ? (
-                        <Button
-                          className="w-full rounded-xl"
-                          disabled
-                        >
-                          Current Plan
-                        </Button>
-                      ) : (
-                        <Button
-                          className="w-full rounded-xl"
-                          onClick={() => handleSelectPlan(price.id)}
-                          disabled={checkoutLoading === price.id}
-                        >
-                          {checkoutLoading === price.id ? (
-                            <span className="flex items-center justify-center gap-2">
-                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                              Processing...
-                            </span>
-                          ) : (
-                            'Subscribe'
-                          )}
-                        </Button>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-            
-            {!pricesLoading && prices.length === 0 && (
-              <div className="text-center text-slate-500 py-12" aria-live="polite">
-                No pricing plans available at the moment.
-              </div>
+              <a href="/tool?action=speed" className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                  <svg className="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-800">Speed</h3>
+                <p className="text-sm text-slate-500 mt-1">Change pace</p>
+              </a>
+
+              <a href="/tool?action=rotate" className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                  <svg className="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-800">Rotate</h3>
+                <p className="text-sm text-slate-500 mt-1">Flip video</p>
+              </a>
+
+              <a href="/tool?action=compress" className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center">
+                <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                  <svg className="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-800">Compress</h3>
+                <p className="text-sm text-slate-500 mt-1">Reduce size</p>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20 bg-slate-50">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-slate-800 mb-4">
+              Ready to get started?
+            </h2>
+            <p className="text-slate-600 mb-8 max-w-xl mx-auto">
+              Join thousands of users who trust LocalConvert for their video editing needs
+            </p>
+            {!user && (
+              <Button asChild size="lg" className="rounded-full px-8">
+                <a href="/login">Sign In Now</a>
+              </Button>
             )}
           </div>
         </section>

@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { AlertCircle, ArrowLeft, Mail } from 'lucide-react'
+import { resetPassword } from '@/lib/api'
 
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState('')
@@ -38,12 +39,21 @@ export function ForgotPasswordForm() {
 
     setIsLoading(true)
     
-    // Simulate API call - replace with actual forgot password API
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    // Show success message
-    setSuccess(true)
-    setIsLoading(false)
+    try {
+      const response = await resetPassword(email)
+      
+      if (!response.success) {
+        setErrors({ general: response.error || 'Failed to send reset password email' })
+        setIsLoading(false)
+        return
+      }
+      
+      setSuccess(true)
+    } catch (error) {
+      setErrors({ general: 'An error occurred. Please try again.' })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (success) {
