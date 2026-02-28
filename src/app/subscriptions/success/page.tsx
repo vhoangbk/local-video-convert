@@ -11,17 +11,16 @@ function SuccessContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
-  const [isLoading, setIsLoading] = useState(true)
   const [sessionData, setSessionData] = useState<StripeSessionResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!sessionId) {
-      setIsLoading(false)
       return
     }
 
-    getStripeSession(sessionId).then((result) => {
+    const fetchSession = async () => {
+      const result = await getStripeSession(sessionId)
       if (result.success && result.data) {
         setSessionData(result.data)
         console.log('Stripe Session:', {
@@ -31,9 +30,12 @@ function SuccessContent() {
       } else {
         setError(result.error || 'Failed to load session details')
       }
-      setIsLoading(false)
-    })
+    }
+
+    fetchSession()
   }, [sessionId])
+
+  const isLoading = !sessionId ? false : !sessionData && !error
 
   if (isLoading) {
     return (

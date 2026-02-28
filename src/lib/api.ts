@@ -1,4 +1,4 @@
-import type { ApiResponse, LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, StripePriceList, StripeSessionResponse, StripeSubscriptionDetail, StripeSubscriptionResponse, User } from '@/types';
+import type { ApiResponse, LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, StripePriceList, StripeSessionResponse, StripeSubscriptionResponse, User } from '@/types';
 
 // const API_BASE_URL = 'https://email-auth-backend-fawn.vercel.app/api';
 const API_BASE_URL = 'https://hoangnv.space/api';

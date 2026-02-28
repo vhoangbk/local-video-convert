@@ -49,7 +49,7 @@ export function ForgotPasswordForm() {
       }
       
       setSuccess(true)
-    } catch (error) {
+    } catch {
       setErrors({ general: 'An error occurred. Please try again.' })
     } finally {
       setIsLoading(false)

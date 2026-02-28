@@ -1,39 +1,33 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { AlertCircle, ArrowLeft, CheckCircle, Loader2, Mail } from 'lucide-react'
+import { AlertCircle, ArrowLeft, CheckCircle, Loader2 } from 'lucide-react'
 import { verifyEmail } from '@/lib/api'
 
 type VerifyStatus = 'loading' | 'success' | 'error' | 'expired'
 
 export function VerifyEmailForm() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<VerifyStatus>('loading')
-  const [isResending, setIsResending] = useState(false)
   const token = searchParams.get('token')
 
-  const callApiVerify = async () => {
-    if (!token) return
-    const res = await verifyEmail(token)
-    if (res.success) {
-      setStatus('success')
-    } else {
-      setStatus('error')
-    }
-  }
-
   useEffect(() => {
-    callApiVerify()
-  }, [token])
+    const verifyToken = async () => {
+      if (!token) return
+      const res = await verifyEmail(token)
+      if (res.success) {
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
+    }
 
-  const handleResend = async () => {
-    callApiVerify()
-  }
+    verifyToken()
+  }, [token])
 
   if (status === 'loading') {
     return (
