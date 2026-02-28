@@ -58,7 +58,7 @@ export function ForgotPasswordForm() {
 
   if (success) {
     return (
-      <Card className="w-full max-w-md border border-slate-200 bg-white">
+      <Card className="w-full max-w-md border border-primary/20 bg-white shadow-lg shadow-primary/5">
         <CardHeader className="space-y-2 pb-8 pt-8">
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 rounded-full bg-primary-100 flex items-center justify-center">
@@ -87,7 +87,7 @@ export function ForgotPasswordForm() {
         <CardFooter className="justify-center pb-8">
           <Link
             href="/login"
-            className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900"
+            className="flex items-center gap-2 text-sm text-primary-600 hover:text-primary-700"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Sign In
@@ -98,12 +98,20 @@ export function ForgotPasswordForm() {
   }
 
   return (
-    <Card className="w-full max-w-md border border-slate-200 bg-white">
+    <Card className="w-full max-w-md border border-primary/20 bg-white shadow-lg shadow-primary/5">
       <CardHeader className="space-y-2 pb-6 pt-8">
-        <CardTitle className="text-2xl font-semibold text-slate-900 tracking-tight">
+        <div className="flex justify-center mb-2">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-md">
+            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L4 6.5v11L12 22l8-4.5v-11L12 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <polygon points="10,8 16,12 10,16" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <CardTitle className="text-2xl font-semibold text-slate-900 tracking-tight text-center">
           Reset Password
         </CardTitle>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-500 text-center">
           Enter your email address and we'll send you instructions to reset your password.
         </p>
       </CardHeader>
@@ -127,7 +135,7 @@ export function ForgotPasswordForm() {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`h-10 bg-white border text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 ${errors.email ? 'border-error-300 focus-visible:ring-error-500' : 'border-slate-300 focus-visible:ring-slate-900'}`}
+              className={`h-10 bg-white border text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 ${errors.email ? 'border-error-300 focus-visible:ring-error-500' : 'border-slate-300 focus-visible:ring-primary'}`}
               disabled={isLoading}
               autoComplete="email"
               aria-invalid={errors.email ? 'true' : 'false'}
@@ -142,7 +150,7 @@ export function ForgotPasswordForm() {
 
           <Button
             type="submit"
-            className="w-full h-10 bg-slate-900 hover:bg-slate-800 text-white touch-action-manipulation mt-2"
+            className="w-full h-10 bg-primary hover:bg-primary-600 text-white touch-action-manipulation mt-2"
             disabled={isLoading}
             aria-busy={isLoading}
           >
@@ -160,7 +168,7 @@ export function ForgotPasswordForm() {
       <CardFooter className="flex justify-center pb-8">
         <Link
           href="/login"
-          className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900"
+          className="flex items-center gap-2 text-sm text-primary-600 hover:text-primary-700"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Sign In

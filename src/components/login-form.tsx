@@ -84,9 +84,17 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md border border-slate-200 bg-white">
+    <Card className="w-full max-w-md border border-primary/20 bg-white shadow-lg shadow-primary/5">
       <CardHeader className="space-y-2 pb-8 pt-8">
-        <CardTitle className="text-2xl font-semibold text-slate-900 tracking-tight">
+        <div className="flex justify-center mb-2">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shadow-md">
+            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L4 6.5v11L12 22l8-4.5v-11L12 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <polygon points="10,8 16,12 10,16" fill="white"/>
+            </svg>
+          </div>
+        </div>
+        <CardTitle className="text-2xl font-semibold text-slate-900 tracking-tight text-center">
           Welcome Back
         </CardTitle>
       </CardHeader>
@@ -112,7 +120,7 @@ export function LoginForm() {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`h-10 bg-white border text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 ${errors.email ? 'border-error-300 focus-visible:ring-error-500' : 'border-slate-300 focus-visible:ring-slate-900'}`}
+              className={`h-10 bg-white border text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 ${errors.email ? 'border-error-300 focus-visible:ring-error-500' : 'border-slate-300 focus-visible:ring-primary'}`}
               disabled={isLoading}
               autoComplete="email"
               aria-invalid={errors.email ? 'true' : 'false'}
@@ -133,7 +141,7 @@ export function LoginForm() {
               </Label>
               <Link
                 href="/forgot-password"
-                className="text-sm text-slate-600 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 rounded"
+                className="text-sm text-primary-600 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
                 tabIndex={0}
               >
                 Forgot?
@@ -146,7 +154,7 @@ export function LoginForm() {
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`h-10 pr-10 bg-white border text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 ${errors.password ? 'border-error-300 focus-visible:ring-error-500' : 'border-slate-300 focus-visible:ring-slate-900'}`}
+                className={`h-10 pr-10 bg-white border text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0 ${errors.password ? 'border-error-300 focus-visible:ring-error-500' : 'border-slate-300 focus-visible:ring-primary'}`}
                 disabled={isLoading}
                 autoComplete="current-password"
                 aria-invalid={errors.password ? 'true' : 'false'}
@@ -155,7 +163,7 @@ export function LoginForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 rounded p-0.5"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded p-0.5"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
                 disabled={isLoading}
               >
@@ -176,7 +184,7 @@ export function LoginForm() {
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full h-10 bg-slate-900 hover:bg-slate-800 text-white touch-action-manipulation mt-2"
+            className="w-full h-10 bg-primary hover:bg-primary-600 text-white touch-action-manipulation mt-2"
             disabled={isLoading}
             aria-busy={isLoading}
           >
@@ -233,7 +241,7 @@ export function LoginForm() {
           Don't have an account?{' '}
           <Link
             href="/signup"
-            className="text-slate-900 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 rounded"
+            className="text-primary-600 font-medium hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded"
           >
             Sign up
           </Link>

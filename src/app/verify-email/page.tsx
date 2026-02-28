@@ -6,13 +6,13 @@ import { Loader2 } from "lucide-react";
 
 function VerifyEmailContent() {
   return (
-    <div className="min-h-screen grid bg-slate-50">
+    <div className="min-h-screen grid bg-gradient-to-br from-primary-50 via-white to-primary-50/30">
       <div className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-md">
           <VerifyEmailForm />
 
           <div className="mt-8 text-center space-y-4">
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-primary-600/70">
               © {new Date().getFullYear()} LocalConvert. All rights reserved.
             </p>
           </div>
@@ -24,10 +24,10 @@ function VerifyEmailContent() {
 
 function LoadingFallback() {
   return (
-    <div className="min-h-screen grid bg-slate-50">
+    <div className="min-h-screen grid bg-gradient-to-br from-primary-50 via-white to-primary-50/30">
       <div className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-md flex items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-slate-600" />
+          <Loader2 className="h-8 w-8 animate-spin text-primary-500" />
         </div>
       </div>
     </div>
