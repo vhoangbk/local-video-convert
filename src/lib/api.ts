@@ -24,7 +24,7 @@ export async function getUserProfile(
     if (!response.ok) {
       return {
         success: false,
-        error: responseData.message || 'Failed to fetch profile',
+        error: responseData.error || 'Failed to fetch profile',
       };
     }
 
@@ -63,7 +63,7 @@ export async function loginUser(
     if (!response.ok) {
       return {
         success: false,
-        error: responseData.message || 'Login failed',
+        error: responseData.error,
       };
     }
 
@@ -102,7 +102,7 @@ export async function registerUser(
     if (!response.ok) {
       return {
         success: false,
-        error: responseData.message || 'Registration failed',
+        error: responseData.error,
       };
     }
 
@@ -138,7 +138,7 @@ export async function resetPassword(
     if (!response.ok) {
       return {
         success: false,
-        error: responseData.message || 'Failed to send reset password email',
+        error: responseData.error || 'Failed to send reset password email',
       };
     }
 
@@ -175,7 +175,7 @@ export async function setNewPassword(
     if (!response.ok) {
       return {
         success: false,
-        error: responseData.message || 'Failed to reset password',
+        error: responseData.error || 'Failed to reset password',
       };
     }
 
@@ -204,43 +204,7 @@ export async function verifyEmail(
     if (!response.ok) {
       return {
         success: false,
-        error: data.message || 'Verification failed',
-      };
-    }
-
-    return {
-      success: true,
-      data: data,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error:
-        error instanceof Error
-          ? error.message
-          : 'Network error. Please try again.',
-    };
-  }
-}
-
-export async function resendVerification(
-  email: string
-): Promise<ApiResponse<{ success: boolean; message: string }>> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/auth/resend-verification`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return {
-        success: false,
-        error: data.message || 'Resend failed',
+        error: data.error || 'Verification failed',
       };
     }
 

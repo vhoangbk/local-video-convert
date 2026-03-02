@@ -174,7 +174,7 @@ export default function Home() {
               </a>
 
               <a
-                href="/tool?action=compress"
+                href="/compress"
                 className="group p-6 rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all duration-300 text-center"
               >
                 <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary-50 flex items-center justify-center group-hover:bg-primary-100 transition-colors">

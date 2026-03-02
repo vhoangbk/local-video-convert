@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ReduxProvider } from "@/store/provider";
 
 export const metadata: Metadata = {
   title: "Local Video Converter",
@@ -17,7 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-foreground">
-        {children}
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
+
+        <script src="/js/blob-utils.js" defer />
+        <script src="https://www.convertsdk.com/sdk/cmd.js" defer />
+        <script src="/js/bee-api.js" defer />
+
       </body>
     </html>
   );

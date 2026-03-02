@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Light mode only - dark mode disabled */
+
 @theme {
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
@@ -14,6 +16,17 @@
   --color-primary-950: var(--primary-950);
   --color-primary: var(--primary-500);
   --color-primary-foreground: var(--primary-foreground);
+  
+  --color-error-50: var(--error-50);
+  --color-error-100: var(--error-100);
+  --color-error-200: var(--error-200);
+  --color-error-300: var(--error-300);
+  --color-error-400: var(--error-400);
+  --color-error-500: var(--error-500);
+  --color-error-600: var(--error-600);
+  --color-error-700: var(--error-700);
+  --color-error-800: var(--error-800);
+  --color-error-900: var(--error-900);
 }
 
 :root {
@@ -149,6 +162,8 @@
   --warning: var(--warning-500);
   --info: var(--info-500);
   --error: var(--error-500);
+
+
 }
 
 body {

@@ -54,7 +54,6 @@ export function Header({ user }: HeaderProps) {
 
         <nav className="flex items-center gap-2 md:gap-6">
           <Link href="/" className="text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors hidden sm:block">Home</Link>
-          <Link href="#" className="text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors hidden sm:block">Tools</Link>
           <Link href="/price" className="text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors hidden md:block">Price</Link>
           <Link href="#" className="text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors hidden md:block">About Us</Link>
           
