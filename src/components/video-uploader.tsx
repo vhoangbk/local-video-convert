@@ -69,10 +69,10 @@ const Upload = (props: Props) => {
         </div>
 
         <div className="text-center pointer-events-none space-y-2 sm:space-y-3 px-4">
-          <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight">
+          <h3 className="text-lg sm:text-xl font-black text-foreground tracking-tight">
             Drag & drop your videos here
           </h3>
-          <p className="text-sm sm:text-base text-muted-foreground font-medium">
+          <p className="text-xs sm:text-sm text-muted-foreground font-medium">
             Supported: MP4, MOV, MKV, AVI and 50+ more
           </p>
         </div>
@@ -82,7 +82,7 @@ const Upload = (props: Props) => {
             e.stopPropagation();
             onPressSelectFile();
           }}
-          className="group/btn relative mt-8 sm:mt-10 flex h-12 md:h-14 min-w-[200px] sm:min-w-[240px] items-center justify-center rounded-xl sm:rounded-2xl bg-primary px-8 sm:px-10 text-base sm:text-lg font-black text-primary-foreground shadow-xl shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+          className="group/btn relative mt-8 sm:mt-10 flex h-12 md:h-14 min-w-[200px] sm:min-w-[240px] items-center justify-center rounded-xl sm:rounded-2xl bg-primary px-8 sm:px-10 text-sm sm:text-base font-black text-primary-foreground shadow-xl shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
         >
           <span className="relative flex items-center gap-2">
             <FolderPlus 
@@ -94,7 +94,7 @@ const Upload = (props: Props) => {
           </span>
         </button>
 
-        <div className="mt-8 flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground pointer-events-none">
+        <div className="mt-8 flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted-foreground pointer-events-none">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 
               className="w-4 h-4 text-primary" 

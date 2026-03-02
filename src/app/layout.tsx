@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReduxProvider } from "@/store/provider";
+import { LoadingWrapper } from "@/components/loading-wrapper";
+import { ErrorWrapper } from "@/components/error-wrapper";
 
 export const metadata: Metadata = {
   title: "Local Video Converter",
@@ -20,6 +22,8 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <ReduxProvider>
           {children}
+          <LoadingWrapper />
+          <ErrorWrapper />
         </ReduxProvider>
 
         <script src="/js/blob-utils.js" defer />

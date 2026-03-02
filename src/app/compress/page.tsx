@@ -2,13 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { ProgressWrapper } from "@/components/progress-wrapper";
 import { Shrink, Zap } from "lucide-react";
 import { CompressFeatures } from "@/components/compress/compress-features";
 import { TargetSizeInput } from "@/components/compress/target-size-input";
-import { useFileUpload, useSelectFile } from "@/hooks/video-conversion";
+import {
+  useFileUpload,
+  useSelectFile,
+  useVideoConversion,
+} from "@/hooks/video-conversion";
 import VideoUploader from "@/components/video-uploader";
 import { VideoInfo } from "@/components/video-info";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useState } from "react";
+import { setTargetSize } from "@/store/slices/optionSlice";
+import { ConvertStatus } from "@/common/types";
 
 export default function CompressVideoPage() {
   const info = useAppSelector((state) => state.app.fileInfo);
@@ -17,6 +26,40 @@ export default function CompressVideoPage() {
   const { openFileSelector } = useSelectFile({
     onFilesSelected: handleFileUpload,
   });
+
+  const options = useAppSelector((state) => state.option);
+  const dispatch = useAppDispatch();
+  const [customSize, setCustomSize] = useState(0);
+
+  const {
+    status,
+    percent,
+    message,
+    remainingTime,
+    errorMessage,
+    startConversion,
+    cancelConversion,
+    resetError,
+  } = useVideoConversion({
+    onComplete: (data) => {
+      const fileInfo = data.fileInfo;
+      fileInfo.name = data.outputName;
+      // dispatch(setFileInfoConverted(fileInfo));
+      // void navigate("/success");
+    },
+  });
+
+  const handleCompress = () => {
+    if (!info) return;
+    dispatch(setTargetSize(customSize));
+    const newOptions = {
+      ...options,
+      target_size: customSize,
+    };
+    void startConversion(newOptions);
+  };
+
+  const isConverting = status === ConvertStatus.converting;
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
@@ -60,15 +103,14 @@ export default function CompressVideoPage() {
                   {/* Right Column - Target Size Input */}
                   <div className="space-y-6">
                     <TargetSizeInput
-                      value={12}
-                      onChange={() => {}}
-                      disabled={false}
-                      currentSize={12}
+                      value={customSize}
+                      onChange={(value) => setCustomSize(value)}
+                      currentSize={info.size / 1024 / 1024}
                     />
 
                     <Button
-                      onClick={() => {}}
-                      disabled={false}
+                      onClick={handleCompress}
+                      disabled={customSize <= 0 || isConverting}
                       className="w-full h-12 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <>
@@ -85,6 +127,16 @@ export default function CompressVideoPage() {
           <CompressFeatures />
         </div>
       </main>
+
+      <Footer />
+
+      {/* Progress Modal */}
+      <ProgressWrapper
+        show={isConverting}
+        percent={percent}
+        remainingTime={remainingTime}
+        message={message}
+      />
     </div>
   );
 }

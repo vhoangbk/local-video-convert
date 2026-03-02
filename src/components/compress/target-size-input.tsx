@@ -21,6 +21,7 @@ export function TargetSizeInput({
   }
 
   const suggestedSizes = [
+    { label: '10%', value: Math.round(currentSize * 0.1) },
     { label: '25%', value: Math.round(currentSize * 0.25) },
     { label: '50%', value: Math.round(currentSize * 0.5) },
     { label: '75%', value: Math.round(currentSize * 0.75) },

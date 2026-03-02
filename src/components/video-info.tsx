@@ -46,7 +46,7 @@ export function VideoInfo({ info }: Props) {
 
         {/* File Name */}
         <div className="space-y-1">
-          <h3 className="text-lg font-semibold text-foreground truncate" title={info.name}>
+          <h3 className="text-base font-semibold text-foreground truncate" title={info.name}>
             {info.name}
           </h3>
         </div>
@@ -59,10 +59,10 @@ export function VideoInfo({ info }: Props) {
               <Maximize2 className="w-4 h-4 text-primary" aria-hidden="true" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
                 Resolution
               </p>
-              <p className="text-sm font-semibold text-foreground truncate">
+              <p className="text-xs font-semibold text-foreground truncate">
                 {info.width} × {info.height}
               </p>
             </div>
@@ -74,10 +74,10 @@ export function VideoInfo({ info }: Props) {
               <HardDrive className="w-4 h-4 text-primary" aria-hidden="true" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
                 File Size
               </p>
-              <p className="text-sm font-semibold text-foreground truncate">
+              <p className="text-xs font-semibold text-foreground truncate">
                 {info.displaySize}
               </p>
             </div>
@@ -89,10 +89,10 @@ export function VideoInfo({ info }: Props) {
               <Film className="w-4 h-4 text-primary" aria-hidden="true" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
                 Video Codec
               </p>
-              <p className="text-sm font-semibold text-foreground uppercase truncate">
+              <p className="text-xs font-semibold text-foreground uppercase truncate">
                 {info.videoCodec || "N/A"}
               </p>
             </div>
@@ -104,10 +104,10 @@ export function VideoInfo({ info }: Props) {
               <FileVideo className="w-4 h-4 text-primary" aria-hidden="true" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
                 Duration
               </p>
-              <p className="text-sm font-semibold text-foreground truncate">
+              <p className="text-xs font-semibold text-foreground truncate">
                 {formatDuration(info.duration)}
               </p>
             </div>
